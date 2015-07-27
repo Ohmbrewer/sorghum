@@ -84,7 +84,7 @@ docker-compose build
 docker-compose up
 ```
 
-Booyah! You should have Sorghum running on port 5000. Someday we might even put this container up in our [Dockerhub repos](https://registry.hub.docker.com/repos/ohmbrewer/)...
+Booyah! You should have Sorghum running on port 5000. If you don't feel like building it yourself, we've got an image on [Docker Hub too](https://registry.hub.docker.com/repos/ohmbrewer/sorghum), but we can't guarantee it'll be the most up-to-date (yet).
 
 ### Tests
 ![alt text](https://i.imgflip.com/opv8j.jpg "YO DAWG, I HEARD YOU LIKE TESTS AND MOCKS, SO I WROTE SOME TESTS SO YOU CAN TEST THE MOCK YOU'LL USE TO TEST YOUR MOCK")
