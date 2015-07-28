@@ -1,7 +1,7 @@
 module Sorghum
 
   # Application Version
-  VERSION = '1.0'.freeze
+  VERSION = '1.1'.freeze
 
   # Assorted information about the Sorghum web application
   APP_INFO = {
