@@ -5,6 +5,9 @@ module Sorghum
 
   module Routes
 
+    # A list of paths that should consume webhook events
+    WEBHOOK_ROUTES = %w(pumps temps thermostats ferms stills).freeze
+
     # Our root route should just tell you a thing or
     # two about this application
     Sinatra::Base::get '/' do
@@ -16,9 +19,6 @@ module Sorghum
       content_type :json
       {error: 'Path not found. Sorry dude.'}.to_json
     end
-
-    # A list of paths that should consume webhook events
-    WEBHOOK_ROUTES = %w(pumps temps thermostats ferms stills).freeze
 
     # For each of the webhook-consuming paths, accept a JSON payload
     WEBHOOK_ROUTES.each do |route|
@@ -42,7 +42,7 @@ module Sorghum
         end
 
         # Append the payload to a file
-        log_event route, request_payload
+        log_event_for route, request_payload
       end
 
       # GET requests sent to /last/ROUTE will return
@@ -57,7 +57,7 @@ module Sorghum
                   'Maybe you haven\'t triggered that one yet?'}.to_json
         else
           content_type :json
-          last_event_msg.chomp.to_json
+          last_event_msg.to_json
         end
       end
 

@@ -17,11 +17,9 @@ class SorghumApp < Sinatra::Application
   # We want logging...
   enable :logging
 
-  # Load any config files...
-  config_file './config/*'
-
   # Finally, include our module
-  include Sorghum
+  helpers Sorghum::Logging
+  helpers Sorghum::Routes
 
 end
 

@@ -7,8 +7,9 @@ require './sorghum'
 
 # If you uncomment the stuff up there, you probably want to rename the log here:
 #error_log = File.new('logs/stderr.log', 'a+')
-error_log = File.new('logs/info.log', 'a+')
-$stderr.reopen(error_log)
-$stderr.sync = true
+# Otherwise, do this if you're so inclined:
+# error_log = File.new('logs/info.log', 'a+')
+# $stderr.reopen(error_log)
+# $stderr.sync = true
 
 run SorghumApp

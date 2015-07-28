@@ -22,18 +22,19 @@ In other words, suppose you don't really want to run your full application.
 Exactly. That's why we've developed Sorghum. 
 
 It's easier than trying to implement an EventMachine Server-Sent Events consumer. It requires minimal development and
-maintenance. It's gluten-free.
+maintenance. It's light-bodied and gluten-free.
 
 ### Description
 Sorghum is a stupid simple Sinatra app that mainly just provides an end-point to lob webhooks at. All it does is receive
 POST messages at event end-points Ohmbrewer supplies and dump what it receives into some handy locations.
 
-Currently, Sorghum sends all server logging messages (including webhook receiving info) to sorghum/logs/info.log. 
-If you're so inclined, you can parse that to determine what time something was received.
+Currently, Sorghum outputs webhook receiving info via the normal Sinatra logging process which means information about
+webhooks being received and so forth will show up in STDERR. If you want to monkey around with actual files, there's some
+settings in `sorghum/config.ru` that you can uncomment to send that stuff to sorghum/logs/info.log. 
+Regardless, if you're so inclined, you can parse that log info to determine what time something was received.
 
-Additionally, the last message received for a given event route will be saved in `sorghum/logs/last_EVENTNAME_event.log`.
-For example, the last message sent to `/pumps` will be found in `sorghum/logs/last_pumps_event.log`. You can also access
-this log by sending a GET request to `/last/EVENTNAME`.
+Additionally, the last message received for a given event route is returned when you send a GET request to `/last/EVENTNAME`.
+That's probably where you want to point the validation steps if you're using this as a testing mock.
 
 This last event dealie isn't great for running tests in parallel, but otherwise it provides a pretty decent way of 
 checking for receipt of a single message as long as you account for transmission time. Again, we're going for simplicity,
@@ -72,8 +73,8 @@ Check out [Brandon West's blog post on the subject](https://sendgrid.com/blog/si
 for the nitty-gritty. Remember, though, the main difference here is that we aren't using SendGrid, we're using Sorghum.
 
 Of course, you should be able to get around the NGrok requirement by running on some sort of publicly accessible web server
-(AWS, Heroku, Cloud9(???), etc.), but I haven't given this a shot yet and depending on the service you may have difficulties getting
-at the logs. If you want to go this route, the work is left up to the reader :wink:
+(AWS, Heroku, etc.). It looks like this'll run on Heroku and Cloud9, but if you want to go this route, the work is left 
+up to the reader :wink:
 
 #### Docker
 Alternatively, we've got a Dockerfile if you want to build a Docker container and a Docker Compose file to make it even easier.
