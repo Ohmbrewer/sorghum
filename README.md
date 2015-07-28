@@ -72,9 +72,11 @@ If you're running Sorghum on your localhost, the easiest way to do that now is t
 Check out [Brandon West's blog post on the subject](https://sendgrid.com/blog/simple-webhook-testing-using-sinatra-ngrok/)
 for the nitty-gritty. Remember, though, the main difference here is that we aren't using SendGrid, we're using Sorghum.
 
-Of course, you should be able to get around the NGrok requirement by running on some sort of publicly accessible web server
-(AWS, Heroku, etc.). It looks like this'll run on Heroku and Cloud9, but if you want to go this route, the work is left 
-up to the reader :wink:
+Of course, you should be able to get around the NGrok requirement by running on some sort of publicly accessible web server (AWS, Heroku, etc.). 
+
+In fact, we've got a Procfile and Puma config for exactly that sort of thing... Try deploying it to Heroku - hopefully it (still) works!
+
+If you're not down for NGrok or Heroku, your best bet is to use the rackup command above via Cloud9, but if you want to go this route, the work is left up to the reader :wink:
 
 #### Docker
 Alternatively, we've got a Dockerfile if you want to build a Docker container and a Docker Compose file to make it even easier.
